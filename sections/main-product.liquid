@@ -240,6 +240,7 @@
               <button id="" class="add-remove minus" onclick="removecardproducts()">
                 {% render 'remove-wishlist' %}
               </button>
+
             {%- when 'sku' -%}
               <p
                 class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -535,7 +536,7 @@
                 >
                   <span
                     aria-hidden="true"
-                    class="rating-star"
+                    class="rating-star color-icon-{{ settings.accent_icons }}"
                     style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
                   ></span>
                 </div>

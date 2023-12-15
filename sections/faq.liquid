@@ -1,0 +1,78 @@
+{{ 'faq.css' | asset_url | stylesheet_tag }}
+<div class="faq_page">
+  <div class="faq_container">
+    <h1>Frequently Asked Questions</h1>
+    {% for block in section.blocks %}
+        {% assign block = section.blocks[i] %}
+      <div class="faq_details">
+         {% if block.settings.question != blank %}
+        <div class="questions">{{ block.settings.question }}</div>
+        {% endif %}
+        <a class="signs">
+          {% render 'icon-positive' %}
+          {% render 'icon-negative' %}
+        </a>
+         {% if block.settings.answer != blank %}
+        <div class="answers">{{ block.settings.answer }}</div>
+           {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+     let details = Array.from(document.getElementsByClassName('faq_details'));
+     let answer = Array.from(document.getElementsByClassName('answers'));
+     let question = Array.from(document.getElementsByClassName('questions'));
+    let minus = Array.from(document.getElementsByClassName('svg_negative'));
+    let plus = Array.from(document.getElementsByClassName('svg_plus'));
+    for (let i = 0; i < details.length; i++) {
+        details[i].addEventListener('click', function () {
+          if (answer[i].style.display === 'none'){
+              showanswer(i);
+          }
+          else{
+              hideanswer(i);
+          }
+        });
+      }
+    function showanswer(n) {
+        answer[n].style.display = 'block';
+        plus[n].style.display = 'none';
+        minus[n].style.display = 'block';
+       question[n].style.color = '#59BF59';
+    }
+    function hideanswer(n) {
+        answer[n].style.display = 'none';
+        plus[n].style.display = 'block';
+        minus[n].style.display = 'none';
+        question[n].style.color = '#000';
+    }
+</script>
+{% schema %}
+{
+  "name": "Section name",
+  "settings": [],
+  "blocks":[{
+     "name" : "Question/Answers",
+    "type":"text",
+    "settings":[
+       {
+      "type":"text",
+      "id":"question",
+      "label":"write question",
+      "default":"write question"
+    },
+      {
+      "type":"text",
+      "id":"answer",
+      "label":"write answers",
+      "default":"write answers"
+    }
+    ]
+  }
+  ],
+  "presets":[{
+    "name":"faq"
+  }]
+}
+{% endschema %}

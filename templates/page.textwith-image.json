@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "08d23522-2ece-42f5-885e-d83179cfd001": {
+      "type": "textwithimage",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Image_8.png",
+        "textcaption": "Become Our Partner",
+        "textdecription": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non.",
+        "button": "Get Started"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "08d23522-2ece-42f5-885e-d83179cfd001"
+  ]
+}

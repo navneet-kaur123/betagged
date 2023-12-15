@@ -1,0 +1,55 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "71f2dfb9-f3b4-4432-a079-667b33746176": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Frame_1.png",
+            "image_width": 180,
+            "alignment": ""
+          }
+        },
+        "8f49573f-62d3-4688-b505-2b24836fffe6": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Company",
+            "menu": "footer-menu"
+          }
+        },
+        "75418ec4-43fa-4ebb-8e01-08a1cb5d9af3": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Legal",
+            "menu": "legal"
+          }
+        }
+      },
+      "block_order": [
+        "71f2dfb9-f3b4-4432-a079-667b33746176",
+        "8f49573f-62d3-4688-b505-2b24836fffe6",
+        "75418ec4-43fa-4ebb-8e01-08a1cb5d9af3"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "newsletter_enable": false,
+        "newsletter_heading": "",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": false,
+        "margin_top": 48,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

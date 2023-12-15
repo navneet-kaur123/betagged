@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "b1959e95-8281-42d1-bf1a-4ffa066cb2ee": {
+      "type": "textwithimage",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Image_8.png",
+        "textcaption": "Become Our Partner",
+        "textdecription": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non.",
+        "button": "Get Started"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "<strong>Explore our Products<\/strong>",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "b1959e95-8281-42d1-bf1a-4ffa066cb2ee",
+    "featured_collection"
+  ]
+}

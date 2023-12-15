@@ -1,0 +1,72 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "9d1966fc-c5bd-4049-8b9a-86e98d385171": {
+      "type": "faq",
+      "blocks": {
+        "30a93204-cbaa-44c2-93fe-25745815d403": {
+          "type": "text",
+          "settings": {
+            "question": "How do I place an order on your website?",
+            "answer": "All you need to do to place an order on our wesbite is to choose the product that you would like to buy, then add it to cart and pay for it using any of the supported payment methods."
+          }
+        },
+        "720ef202-7075-462a-90d0-581caee48086": {
+          "type": "text",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "All you need to do to place an order on our wesbite is to choose the product that you would like to buy, then add it to cart and pay for it using any of the supported payment methods."
+          }
+        },
+        "cf22162b-1f5b-4c2b-86f7-afab7e11cce8": {
+          "type": "text",
+          "settings": {
+            "question": "Do you offer an option to send a product as a gift?",
+            "answer": "All you need to do to place an order on our wesbite is to choose the product that you would like to buy, then add it to cart and pay for it using any of the supported payment methods."
+          }
+        },
+        "739b78a2-84dc-4ac0-b910-f31edac18409": {
+          "type": "text",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "All you need to do to place an order on our wesbite is to choose the product that you would like to buy, then add it to cart and pay for it using any of the supported payment methods."
+          }
+        },
+        "bad0ce6a-feb0-4f57-8554-38b4d6f6b526": {
+          "type": "text",
+          "settings": {
+            "question": "Do you offer an option to pay for the product over time?",
+            "answer": "All you need to do to place an order on our wesbite is to choose the product that you would like to buy, then add it to cart and pay for it using any of the supported payment methods."
+          }
+        },
+        "363537f3-b36c-42bd-a292-5d8c5736bd64": {
+          "type": "text",
+          "settings": {
+            "question": "Do I have to pay for the shipping?",
+            "answer": "All you need to do to place an order on our wesbite is to choose the product that you would like to buy, then add it to cart and pay for it using any of the supported payment methods."
+          }
+        }
+      },
+      "block_order": [
+        "30a93204-cbaa-44c2-93fe-25745815d403",
+        "720ef202-7075-462a-90d0-581caee48086",
+        "cf22162b-1f5b-4c2b-86f7-afab7e11cce8",
+        "739b78a2-84dc-4ac0-b910-f31edac18409",
+        "bad0ce6a-feb0-4f57-8554-38b4d6f6b526",
+        "363537f3-b36c-42bd-a292-5d8c5736bd64"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "9d1966fc-c5bd-4049-8b9a-86e98d385171"
+  ]
+}

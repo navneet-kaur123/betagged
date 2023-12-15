@@ -1,0 +1,530 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  }
+{%- endstyle -%}
+
+<div hidden class="customer register section-{{ section.id }}-padding">
+  <svg style="display: none">
+    <symbol id="icon-error" viewBox="0 0 13 13">
+      <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2" />
+      <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7" />
+      <path
+        d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z"
+        fill="white" />
+      <path
+        d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z"
+        fill="white" stroke="#EB001B" stroke-width="0.7">
+    </symbol>
+  </svg>
+  <h1>
+    {{ 'customer.register.title' | t }}
+  </h1>
+  {%- form 'create_customer', novalidate: 'novalidate', name: 'customer_registration_form' -%}
+    {%- if form.errors -%}
+      <div id="me">
+        <h2 class="form__message" tabindex="-1" autofocus>
+          <svg aria-hidden="true" focusable="false">
+            <use href="#icon-error" />
+          </svg>
+          {{ 'templates.contact.form.error_heading' | t }}
+        </h2>
+        <ul>
+          {%- for field in form.errors -%}
+            <li>
+              {%- if field == 'form' -%}
+                {{ form.errors.messages[field] }}
+              {%- else -%}
+                <a href="#RegisterForm-{{ field }}">
+                  {{ form.errors.translated_fields[field] | capitalize }}
+                  {{ form.errors.messages[field] }}
+                </a>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    <div class="formfulldata">
+      <label for="RegisterForm-FirstName">
+        {{ 'customer.register.first_name' | t }}
+      </label>
+      <div class="field">
+        <input
+          type="text"
+          name="customer[first_name]"
+          id="hiddenRegisterForm-FirstName"
+          {% if form.first_name %}
+            value="{{ form.first_name }}"
+          {% endif %}
+          autocomplete="off"
+          placeholder="{{ 'customer.register.first_name' | t }}"
+          aria-required="true"
+        >
+      </div>
+    </div>
+    <span id="hiddenfirstmsg" style="color: red;" class="error"></span>
+    <div class="formfulldata">
+      <label for="RegisterForm-LastName">
+        {{ 'customer.register.last_name' | t }}
+      </label>
+      <div class="field">
+        <input
+          type="text"
+          name="customer[last_name]"
+          id="hiddenRegisterForm-LastName"
+          {% if form.last_name %}
+            value="{{ form.last_name }}"
+          {% endif %}
+          autocomplete="off"
+          placeholder="{{ 'customer.register.last_name' | t }}"
+          aria-required="true"
+        >
+      </div>
+    </div>
+    <span id="hiddenlastmsg" style="color: red;" class="error"></span>
+    <div class="formfulldata">
+      <label for="RegisterForm-email">
+        {{ 'customer.register.email' | t }}
+      </label>
+      <div class="field">
+        <input
+          type="email"
+          name="customer[email]"
+          id="hiddenRegisterForm-email"
+          {% if form.email %}
+            value="{{ form.email }}"
+          {% endif %}
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          aria-required="true"
+          {% if form.errors contains 'email' %}
+            aria-invalid="true" aria-describedby="RegisterForm-email-error"
+          {% endif %}
+          placeholder="{{ 'customer.register.email' | t }}"
+        >
+      </div>
+    </div>
+    <span id="hiddenemailmsg" style="color: red;" class="error"></span>
+    <div class="formfulldata">
+      <label for="RegisterForm-password">
+        {{ 'customer.register.password' | t }}
+      </label>
+      <div class="field">
+        <input
+          type="password"
+          name="customer[password]"
+          id="hiddenRegisterForm-password"
+          aria-required="true"
+          {% if form.errors contains 'password' %}
+            aria-invalid="true" aria-describedby="RegisterForm-password-error"
+          {% endif %}
+          placeholder="{{ 'customer.register.password' | t }}"
+          aria-required="true"
+        >
+      </div>
+    </div>
+    <span id="hiddenpasswordmsg" style="color: red;" class="error"></span>
+    <div class="formfulldata">
+      <label for="RegisterForm-phone">
+        {{ 'customer.register.phone' | t }}
+      </label>
+      <div class="field">
+        <input
+          type="tel"
+          name="customer[note][phone]"
+          id="hiddenRegisterForm-phone"
+          aria-required="true"
+          {% if form.errors contains 'phone' %}
+            aria-invalid="true" aria-describedby="RegisterForm-phone-error"
+          {% endif %}
+          value=""
+          required
+          pattern="[0-9]{10}"
+          placeholder="Phone"
+        >
+      </div>
+    </div>
+    <span id="hiddenphonemsg" style="color: red;" class="error"></span>
+    <div class="formfulldata">
+      <label for="RegisterForm-dateofbirth">
+        {{ 'customer.register.dateofbirth' | t }}
+      </label>
+      <div class="field">
+        <input
+          name="customer[note][dateofbirth]"
+          id="hiddenRegisterForm-date"
+          aria-required="true"
+          {% if form.errors contains 'dateofbirth' %}
+            aria-invalid="true" aria-describedby="RegisterForm-dateofbirth-error"
+          {% endif %}
+          placeholder="{{ 'customer.register.dateofbirth' | t }}"
+          type="date"
+          min="2005-01-01"
+        >
+      </div>
+    </div>
+    <span id="hiddendatemsg" style="color: red;" class="error"></span>
+
+    <div class="formfulldata">
+      <label for="RegisterForm-gender"> {{ 'customer.register.gender' | t }}: </label><br>
+      <input
+        type="radio"
+        name="hiddencustomer[note][gender]"
+        class="gender"
+        id="hiddenRegisterForm-gender1"
+        value="male"
+        aria-required="true"
+        {% if form.errors contains 'gender1' %}
+          aria-invalid="true" aria-describedby="RegisterForm-gender-error"
+        {% endif %}
+      >
+      <label for="gender1">male</label>
+      <input
+        type="radio"
+        id="hiddenRegisterForm-gender2"
+        class="gender"
+        name="hiddencustomer[note][gender]"
+        aria-required="true"
+        value="female"
+        {% if form.errors contains 'gender2' %}
+          aria-invalid="true" aria-describedby="RegisterForm-gender-error"
+        {% endif %}
+      >
+      <label for="gender2">female</label>
+      <input
+        type="radio"
+        id="hiddenRegisterForm-gender3"
+        class="gender"
+        name="hiddencustomer[note][gender]"
+        aria-required="true"
+        value="others"
+        {% if form.errors contains 'gender2' %}
+          aria-invalid="true" aria-describedby="RegisterForm-gender-error"
+        {% endif %}
+      >
+      <label for="gender3">others</label>
+    </div>
+
+    <span id="hiddengendermsg" style="color: red" class="error"></span>
+    <button id="register_submit">
+      {{ 'customer.register.submit' | t }}
+    </button>
+  {%- endform -%}
+</div>
+
+<div class="customer register section-{{ section.id }}-padding">
+  <h1>
+    {{ 'customer.register.title' | t }}
+  </h1>
+  <div class="formfulldata">
+    <label for="RegisterForm-FirstName">
+      {{ 'customer.register.first_name' | t }}
+    </label>
+    <div class="field">
+      <input
+        type="text"
+        name="customer[first_name]"
+        id="RegisterForm-FirstName"
+        autocomplete="off"
+        placeholder="{{ 'customer.register.first_name' | t }}"
+        aria-required="true"
+      >
+    </div>
+  </div>
+  <span id="firstmsg" style="color: red;" class="error"></span>
+  <div class="formfulldata">
+    <label for="RegisterForm-LastName">
+      {{ 'customer.register.last_name' | t }}
+    </label>
+    <div class="field">
+      <input
+        type="text"
+        name="customer[last_name]"
+        id="RegisterForm-LastName"
+        autocomplete="off"
+        placeholder="{{ 'customer.register.last_name' | t }}"
+        aria-required="true"
+      >
+    </div>
+  </div>
+  <span id="lastmsg" style="color: red;" class="error"></span>
+  <div class="formfulldata">
+    <label for="RegisterForm-email">
+      {{ 'customer.register.email' | t }}
+    </label>
+    <div class="field">
+      <input
+        type="email"
+        name="customer[email]"
+        id="RegisterForm-email"
+        spellcheck="false"
+        autocapitalize="off"
+        autocomplete="off"
+        aria-required="true"
+        placeholder="{{ 'customer.register.email' | t }}"
+      >
+    </div>
+  </div>
+  <span id="emailmsg" style="color: red;" class="error"></span>
+  <div class="formfulldata">
+    <label for="RegisterForm-password">
+      {{ 'customer.register.password' | t }}
+    </label>
+    <div class="field">
+      <input
+        type="password"
+        name="customer[password]"
+        id="RegisterForm-password"
+        aria-required="true"
+        placeholder="{{ 'customer.register.password' | t }}"
+        aria-required="true"
+      >
+    </div>
+  </div>
+  <span id="passwordmsg" style="color: red;" class="error"></span>
+  <div class="formfulldata">
+    <label for="RegisterForm-phone">
+      {{ 'customer.register.phone' | t }}
+    </label>
+    <div class="field">
+      <input
+        type="tel"
+        name="customer[note][phone]"
+        id="RegisterForm-phone"
+        aria-required="true"
+        value=""
+        required
+        pattern="[0-9]{10}"
+        placeholder="Phone"
+      >
+    </div>
+  </div>
+  <span id="phonemsg" style="color: red;" class="error"></span>
+  <div class="formfulldata">
+    <label for="RegisterForm-dateofbirth">
+      {{ 'customer.register.dateofbirth' | t }}
+    </label>
+    <div class="field">
+      <input
+        name="customer[note][dateofbirth]"
+        id="RegisterForm-date"
+        aria-required="true"
+        placeholder="{{ 'customer.register.dateofbirth' | t }}"
+        type="date"
+        min="2005-01-01"
+      >
+    </div>
+  </div>
+  <span id="datemsg" style="color: red;" class="error"></span>
+  <div class="formfulldata">
+    <label for="RegisterForm-gender"> {{ 'customer.register.gender' | t }}: </label><br>
+    <input
+      type="radio"
+      name="customer[note][gender]"
+      class="gender"
+      id="RegisterForm-gender1"
+      value="male"
+      aria-required="true"
+    >
+    <label for="gender1">male</label>
+    <input
+      type="radio"
+      id="RegisterForm-gender2"
+      class="gender"
+      name="customer[note][gender]"
+      aria-required="true"
+      value="female"
+    >
+    <label for="gender2">female</label>
+    <input
+      type="radio"
+      id="RegisterForm-gender3"
+      class="gender"
+      name="customer[note][gender]"
+      aria-required="true"
+      value="others"
+    >
+    <label for="gender3">others</label>
+  </div>
+  <span id="gendermsg" style="color: red" class="error"></span>
+  <button type="submit" onclick="return validateForm()">
+    {{ 'customer.register.submit' | t }}
+  </button>
+</div>
+<script>
+      function validateForm() {
+        var namefield = document.getElementById('RegisterForm-FirstName');
+        var lastNamefield = document.getElementById('RegisterForm-LastName');
+        var emailfield = document.getElementById('RegisterForm-email');
+        var passwordfield = document.getElementById('RegisterForm-password');
+        var phonefield = document.getElementById('RegisterForm-phone');
+        var datefield = document.getElementById('RegisterForm-date');
+
+        var name = document.getElementById('RegisterForm-FirstName').value;
+        var lastName = document.getElementById('RegisterForm-LastName').value;
+        var email = document.getElementById('RegisterForm-email').value;
+        var password = document.getElementById('RegisterForm-password').value;
+        var phone = document.getElementById('RegisterForm-phone').value;
+        var date = document.getElementById('RegisterForm-date').value;
+        var gender = document.getElementsByName('customer[note][gender]');
+        var form = document.getElementById('register_submit');
+        var errorMessage = document.getElementById("phone-error-message");
+
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var phonePattern = /^[6-9]\d{9}$/;
+        var alphabetPattern = /^[A-Za-z]+$/;
+        var PasswordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
+
+
+        var errorMessages = document.querySelectorAll(".error");
+        errorMessages.forEach(function (element) {
+          if (element.textContent !== '') {
+            element.textContent = '';
+          }
+        });
+  if (name.trim() === "" || !alphabetPattern.test(name)) {
+    if (name.trim() === "") {
+      firstmsg.textContent = "Name must not be blank";
+    } else {
+      firstmsg.textContent = "Name should contain only alphabets";
+    }
+
+    namefield.focus();
+    return false;
+  }
+
+  if (lastName.trim() === "" || !alphabetPattern.test(lastName)) {
+    if (lastName.trim() === "") {
+      lastmsg.textContent = "LastName must not be blank";
+    } else {
+      lastmsg.textContent = "LastName should contain only alphabets";
+    }
+
+    lastNamefield.focus();
+    return false;
+  }
+
+
+        // if (lastName.trim() === '' || !alphabetPattern.test(lastName)) {
+        //   lastmsg.textContent = 'Last Name must not be blank and should contain only alphabets';
+        //   lastNamefield.focus();
+        //   return false;
+        // }
+        if (email.trim() === "") {
+          emailmsg.textContent = 'Email is empty';
+          emailfield.focus();
+          return false;
+        }
+        if (!emailPattern.test(email)) {
+          emailmsg.textContent = 'Email is invalid';
+          emailfield.focus();
+          return false;
+        }
+
+        if (password.length < 6 || !PasswordPattern.test(password)) {
+          passwordmsg.textContent = " At least one lowercase letter (a-z)\n" +
+            "- At least one uppercase letter (A-Z)\n" +
+            "- At least one digit (0-9)\n" +
+            "- At least one special character (@, #, $, %, ^, &, +, or !)\n" +
+            "- Minimum length of 8 characters";
+          passwordfield.focus();
+          return false;
+        }
+        if (!phonePattern.test(phone)) {
+          phonemsg.textContent = 'Phone number is invalid (10 digits required)';
+          phonefield.focus();
+          return false;
+        }
+        if (date.trim() === '') {
+          datemsg.textContent = 'Date is required';
+          datefield.focus();
+          return false;
+        }
+
+
+        for (let i = 0; i < gender.length; i++) {
+          if (gender[i].checked) {
+            gender = gender[i].value;
+          }
+        }
+        if (gender.length == 3) {
+          gendermsg.textContent = 'gender is required';
+          return false;
+        }
+
+        var oldname = document.getElementById('hiddenRegisterForm-FirstName');
+        var oldlastName = document.getElementById('hiddenRegisterForm-LastName');
+        var oldemail = document.getElementById('hiddenRegisterForm-email');
+        var oldpassword = document.getElementById('hiddenRegisterForm-password');
+        var oldphone = document.getElementById('hiddenRegisterForm-phone');
+        var olddate = document.getElementById('hiddenRegisterForm-date');
+        var oldgender = document.getElementsByName('hiddencustomer[note][gender]');
+
+        oldname.innerHTML = "";
+        oldlastName.innerHTML = "";
+        oldemail.innerHTML = "";
+        oldpassword.innerHTML = "";
+        oldphone.innerHTML = "";
+        olddate.innerHTML = "";
+        oldgender.innerHTML = "";
+
+        oldname.value = name;
+        oldlastName.value = lastName;
+        oldemail.value = email;
+        oldpassword.value = password;
+        oldphone.value = phone;
+        olddate.value = date;
+        oldgender.value = gender;
+
+        console.log(oldname, "--", oldlastName, "--", oldemail, "--", oldpassword, "--", oldphone, "--", olddate, "--");
+        if (oldname != '' && oldlastName != '' && oldemail != '' && oldpassword != '' && oldphone != '' && olddate != '') {
+          form.click();
+        }
+
+        return true;
+      }
+</script>
+
+{% schema %}
+{
+"name": "t:sections.main-register.name",
+"settings": [
+{
+"type": "header",
+"content": "t:sections.all.padding.section_padding_heading"
+},
+{
+"type": "range",
+"id": "padding_top",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_top",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_bottom",
+"default": 36
+}
+]
+}
+{% endschema %}

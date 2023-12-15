@@ -1,0 +1,57 @@
+<style>
+ .betagged_footer {
+  width: 100%;
+  display: flex;
+  width: 1440px;
+  height: 354px;
+  padding: 54px 144px;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 1440px;
+  margin:0 auto;
+}
+</style>
+<div class="betagged_footer">
+  <div class="container">
+    <div class="footer_logo">
+     <img
+    class="image-withtext"
+    src="{{section.settings.footerlogo| image_url: width: 182
+      }}
+    "
+    loading="lazy"
+    height=""
+    width=""
+  >
+    </div>
+    <div class="compny_details"></div>
+    <div class="legal_details"></div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "betagged footer",
+     "enabled_on": {
+    "groups": [ "footer"]
+  },
+    "settings": [
+      {
+        "type":"image_picker",
+        "id":"footerlogo",
+        "label":"select logo"
+      },
+      {
+        "type":"text",
+        "id":"details",
+        "label":"heading"
+      }
+    ],
+    "presets":[
+      {
+      "name":"our Footer"
+    }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,192 @@
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+.section-{{ section.id }}-padding {
+padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+.section-{{ section.id }}-padding {
+padding-top: {{ section.settings.padding_top }}px;
+padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+}
+{%- endstyle -%}
+
+<div class="page-width{% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
+  <div>
+    <div class="cart__footer section-{{ section.id }}-padding">
+      {%- if settings.show_cart_note -%}
+      <cart-note class="cart__note field">
+        <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+        <textarea class="text-area field__input" name="note" form="cart" id="Cart-note"
+          placeholder="{{ 'sections.cart.note' | t }}">{{ cart.note }}</textarea>
+      </cart-note>
+      {%- endif -%}
+
+      <div class="cart__blocks">
+        {% for block in section.blocks %}
+        {%- case block.type -%}
+        {%- when '@app' -%}
+        {% render block %}
+        {%- when 'subtotal' -%}
+        <div class="js-contents" {{ block.shopify_attributes }}>
+          <div>
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+            <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+              {%- for discount in cart.cart_level_discount_applications -%}
+              <li class="discounts__discount discounts__discount--position">
+                {%- render 'icon-discount' -%}
+                {{ discount.title }}
+                (-{{ discount.total_allocated_amount | money }})
+              </li>
+              {%- endfor -%}
+            </ul>
+            {%- endif -%}
+          </div>
+
+          <div class="totals">
+            <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+            <div class="payment_details">
+              <h5 class="totals__details">{{ 'sections.cart.Subtotal' | t }}</h5>
+              <p class="totals__total">{{ cart.total_price | money_with_currency }}</p>
+            </div>
+            <div class="payment_details">
+              <h5 class="totals__details">{{ 'sections.cart.shipping' | t }}<svg width="14" height="14"
+                  viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 0.500366C5.82292 0.500366 4.72917 0.797241 3.71875 1.39099C2.73958 1.96391 1.96354 2.73995 1.39062 3.71912C0.796875 4.72953 0.5 5.82328 0.5 7.00037C0.5 8.17745 0.796875 9.2712 1.39062 10.2816C1.96354 11.2608 2.73958 12.0368 3.71875 12.6097C4.72917 13.2035 5.82292 13.5004 7 13.5004C8.17708 13.5004 9.27083 13.2035 10.2812 12.6097C11.2604 12.0368 12.0365 11.2608 12.6094 10.2816C13.2031 9.2712 13.5 8.17745 13.5 7.00037C13.5 5.82328 13.2031 4.72953 12.6094 3.71912C12.0365 2.73995 11.2604 1.96391 10.2812 1.39099C9.27083 0.797241 8.17708 0.500366 7 0.500366ZM7 1.50037C8 1.50037 8.92708 1.75037 9.78125 2.25037C10.6042 2.73995 11.2604 3.3962 11.75 4.21912C12.25 5.07328 12.5 6.00037 12.5 7.00037C12.5 8.00037 12.25 8.92745 11.75 9.78162C11.2604 10.6045 10.6042 11.2608 9.78125 11.7504C8.92708 12.2504 8 12.5004 7 12.5004C6 12.5004 5.07292 12.2504 4.21875 11.7504C3.39583 11.2608 2.73958 10.6045 2.25 9.78162C1.75 8.92745 1.5 8.00037 1.5 7.00037C1.5 6.00037 1.75 5.07328 2.25 4.21912C2.73958 3.3962 3.39583 2.73995 4.21875 2.25037C5.07292 1.75037 6 1.50037 7 1.50037ZM6.5 4.00037V5.00037H7.5V4.00037H6.5ZM6.5 6.00037V10.0004H7.5V6.00037H6.5Z"
+                    fill="black" />
+                </svg>
+              </h5>
+              <p class="totals__total">{% if checkout.shipping_address %}
+                {% if checkout.shipping_rates.size > 0 %}
+                {% for shipping_method in checkout.shipping_rates %}
+              <!-- <p>{{ shipping_method.title }}: {{ shipping_method.price | money_with_currency }}</p> -->
+              {% endfor %}
+              {% else %}
+              <p>No shipping rates available for the selected location. Please contact support for assistance.</p>
+              {% endif %}
+              {% else %}
+              <p>{% assign shipping_price = 10000 %}{{ shipping_price | money_with_currency }}</p>
+              {% endif %}
+              </p>
+
+            </div>
+
+            <div class="payment_details">
+              <h5 class="totals__details">{{ 'sections.cart.headings.total' | t }}</h5>
+              <p class="totals__total">
+                {% for item in cart.items %}
+                {% assign total_price = cart.total_price | plus: shipping_price %}
+                {% endfor %}
+                {{ total_price | money_with_currency}}</p>
+            </div>
+          </div>
+          <!-- <small class="tax-note caption-large rte">
+                  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                    {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- elsif cart.taxes_included -%}
+                    {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+                  {%- elsif shop.shipping_policy.body != blank -%}
+                    {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                  {%- else -%}
+                    {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                  {%- endif -%}
+                </small> -->
+        </div>
+        {%- else -%}
+        <div class="cart__ctas" {{ block.shopify_attributes }}>
+          <noscript>
+            <button type="submit" class="cart__update-button button button--secondary" form="cart">
+              {{ 'sections.cart.update' | t }}
+            </button>
+          </noscript>
+
+          <button type="submit" id="checkout" class="cart__checkout-button button" name="checkout" {% if cart==empty %}
+            disabled {% endif %} form="cart">
+            {{ 'sections.cart.checkout' | t }}
+          </button>
+        </div>
+
+        {%- if additional_checkout_buttons -%}
+        <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+          {{ content_for_additional_checkout_buttons }}
+        </div>
+        {%- endif -%}
+        {%- endcase -%}
+        {% endfor %}
+
+        <div id="cart-errors"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function isIE() {
+      const ua = window.navigator.userAgent;
+      const msie = ua.indexOf('MSIE ');
+      const trident = ua.indexOf('Trident/');
+
+      return msie > 0 || trident > 0;
+    }
+
+    if (!isIE()) return;
+    const cartSubmitInput = document.createElement('input');
+    cartSubmitInput.setAttribute('name', 'checkout');
+    cartSubmitInput.setAttribute('type', 'hidden');
+    document.querySelector('#cart').appendChild(cartSubmitInput);
+    document.querySelector('#checkout').addEventListener('click', function (event) {
+      document.querySelector('#cart').submit();
+    });
+  });
+</script>
+
+{% schema %}
+{
+"name": "t:sections.main-cart-footer.name",
+"class": "cart__footer-wrapper",
+"settings": [
+{
+"type": "range",
+"id": "padding_top",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_top",
+"default": 40
+},
+{
+"type": "range",
+"id": "padding_bottom",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_bottom",
+"default": 40
+}
+],
+"blocks": [
+{
+"type": "subtotal",
+"name": "t:sections.main-cart-footer.blocks.subtotal.name",
+"limit": 1
+},
+{
+"type": "buttons",
+"name": "t:sections.main-cart-footer.blocks.buttons.name",
+"limit": 1
+},
+{
+"type": "@app"
+}
+]
+}
+{% endschema %}

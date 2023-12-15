@@ -1,0 +1,133 @@
+<style>
+* {
+  padding: 0;
+  margin: 0;
+}
+.container-box {
+  display: flex;
+  width: 100%;
+  height: 460px;
+  background: #f5f6fb;
+  position: relative;
+  padding: 91px 0;
+}
+.container {
+  width: 1440px;
+  margin: 0 auto;
+}
+.image-withtext {
+  position: absolute;
+  bottom: 0;
+  right: 25%;
+}
+.textwith-image {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+.text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 393px;
+  gap: 8px;
+  letter-spacing: 0em;
+}
+
+.text-content h1 {
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 70px;
+  color: rgba(0, 0, 0, 1);
+}
+
+.text-content p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  color: rgba(32, 32, 32, 0.5);
+}
+.button-content a {
+  display: flex;
+  height: 50px;
+  padding: 16px 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #59bf59;
+  color: #f7fafc;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px; /* 187.5% */
+}
+
+</style>
+<div class="container-box">
+  <img
+    class="image-withtext"
+    src="
+      {{
+        section.settings.image
+        | image_url: width: 1500
+      }}
+    "
+    loading="lazy"
+    height=""
+    width=""
+  >
+  <div class="container">
+    <div class="textwith-image">
+      <div class="text-content">
+        <h1>{{ section.settings.textcaption }}</h1>
+        <p>{{ section.settings.textdecription }}</p>
+      </div>
+      <div class="button-content">
+        <a>{{ section.settings.button }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "text-withimage",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "select the image"
+    },
+    {
+      "type": "text",
+      "id": "textcaption",
+      "label": "heading",
+      "default": "heading"
+    },
+    {
+      "type": "text",
+      "id": "textdecription",
+      "label": "content",
+      "default": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non."
+    },
+    {
+      "type":"text",
+      "id": "button",
+      "label": "button",
+      "default": "button"
+    }
+  ],
+  "presets": [
+    {
+      "name": "textimage"
+    }
+  ]
+}
+{% endschema %}

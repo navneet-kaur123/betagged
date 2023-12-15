@@ -385,23 +385,24 @@
             <a role="link" aria-disabled="true" class="full-unstyled-link">
               {{ 'onboarding.product_title' | t }}
             </a>
+            <span>
+              <button
+                id="p{{ variant_id }}"
+                class="add-remove plus"
+                onclick="addcardproducts('p{{ variant_id }}','{{ card_product.title | escape }}','{{card_product.price | money}}','{{ customer.id }}','{{ card_product.url }}','{{ card_product.featured_media | image_url: width: 533 }}')"
+              >
+                {% render 'add-wishlist' %}
+              </button>
+              <button
+                id="{{ variant_id }}"
+                class="add-remove minus"
+                onclick="removecardproducts('{{ variant_id }}','{{ customer.id }}')"
+              >
+                {% render 'remove-wishlist' %}
+              </button>
+            </span>
           </h3> 
-          <span>
-            <button
-              id="p{{ variant_id }}"
-              class="add-remove plus"
-              onclick="addcardproducts('p{{ variant_id }}','{{ card_product.title | escape }}','{{card_product.price | money}}','{{ customer.id }}','{{ card_product.url }}','{{ card_product.featured_media | image_url: width: 533 }}')"
-            >
-              {% render 'add-wishlist' %}
-            </button>
-            <button
-              id="{{ variant_id }}"
-              class="add-remove minus"
-              onclick="removecardproducts('{{ variant_id }}','{{ customer.id }}')"
-            >
-              {% render 'remove-wishlist' %}
-            </button>
-          </span>
+         
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>

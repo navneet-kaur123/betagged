@@ -122,10 +122,6 @@
       >
         <div id="myimageurl" style="display:none">{{ product | image_url: width: 221 }}</div>
         <div id="myproducturl" style="display:none">{{ product.url }}</div>
-        <button id="" class="add-remove plus" onclick="addcardproducts()">{% render 'add-wishlist' %}</button>
-        <button id="" class="add-remove minus" onclick="removecardproducts()">
-          {% render 'remove-wishlist' %}
-        </button>
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
         {%- for block in section.blocks -%}
@@ -240,7 +236,10 @@
                   {{ product.description }}
                 </div>
               {%- endif -%}
-
+              <button id="" class="add-remove plus" onclick="addcardproducts()">{% render 'add-wishlist' %}</button>
+              <button id="" class="add-remove minus" onclick="removecardproducts()">
+                {% render 'remove-wishlist' %}
+              </button>
             {%- when 'sku' -%}
               <p
                 class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"

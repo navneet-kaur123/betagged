@@ -19,7 +19,19 @@
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
-
+<style>
+  .card.card--standard.card--media {
+    position: relative;
+}
+    span button.add-remove {
+      position: absolute;
+      top: 1%;
+      right: 2%;
+      z-index: 9;
+  }
+</style>
+{{ 'wishlist.css' | asset_url | stylesheet_tag }}
+{{ 'custom.css' | asset_url | stylesheet_tag }}
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
 
@@ -138,6 +150,7 @@
           </div>
         </div>
       </div>
+      {% assign variant_id = card_product.selected_or_first_available_variant.id %}
       <div class="card__content">
         <div class="card__information">
           <div class="card-information">
@@ -372,7 +385,23 @@
             <a role="link" aria-disabled="true" class="full-unstyled-link">
               {{ 'onboarding.product_title' | t }}
             </a>
-          </h3>
+          </h3> 
+          <span>
+            <button
+              id="p{{ variant_id }}"
+              class="add-remove plus"
+              onclick="addcardproducts('p{{ variant_id }}','{{ card_product.title | escape }}','{{card_product.price | money}}','{{ customer.id }}','{{ card_product.url }}','{{ card_product.featured_media | image_url: width: 533 }}')"
+            >
+              {% render 'add-wishlist' %}
+            </button>
+            <button
+              id="{{ variant_id }}"
+              class="add-remove minus"
+              onclick="removecardproducts('{{ variant_id }}','{{ customer.id }}')"
+            >
+              {% render 'remove-wishlist' %}
+            </button>
+          </span>
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>

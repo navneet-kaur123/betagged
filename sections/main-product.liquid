@@ -1,8 +1,55 @@
+<script>
+  var template_element = document.getElementById("templateid");
+  var template_name = template_element.textContent;
+   if(template_name == 'product'){
+    document.addEventListener("DOMContentLoaded", function() {
+      var variant_id = (document.getElementsByClassName("product-variant-id")[0].defaultValue);
+      var plusButton = document.querySelector(".plus");
+      var plusId = "p" + variant_id;
+      if (!plusButton.id) {
+          plusButton.setAttribute("id", plusId);
+      }
+    var minusButton = document.querySelector(".minus");
+    if (!minusButton.id) {
+      minusButton.setAttribute("id", variant_id);
+    }
+  });
+  }
+</script>
+<style>
+      .wishlist_icons {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: absolute;
+      right: 33%;
+    }
+
+    /* .add-wishlist svg {
+      position: absolute;
+      top: 10%;
+    } */
+    svg.remove-wishlist {
+      display: none;
+    }
+   button.add-remove {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    font: inherit;
+    border-radius: 0;
+    appearance: none;
+    z-index: 99;
+  }
+</style>
 <section
   id="MainProduct-{{ section.id }}"
   class="page-width section-{{ section.id }}-padding"
   data-section="{{ section.id }}"
 >
+  {{ 'custom.css' | asset_url | stylesheet_tag }}
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -73,6 +120,8 @@
         data-url="{{ product.url }}"
         class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
       >
+        <div id="myimageurl" style="display:none">{{ product | image_url: width: 221 }}</div>
+        <div id="myproducturl" style="display:none">{{ product.url }}</div>
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
         {%- for block in section.blocks -%}
@@ -88,7 +137,7 @@
               </p>
             {%- when 'title' -%}
               <div class="product__title" {{ block.shopify_attributes }}>
-                <h1>{{ product.title | escape }}</h1>
+                <h1 id="myproducttitle">{{ product.title | escape }}</h1>
                 <a href="{{ product.url }}" class="product__title">
                   <h2 class="h1">
                     {{ product.title | escape }}
@@ -187,6 +236,11 @@
                   {{ product.description }}
                 </div>
               {%- endif -%}
+              <button id="" class="add-remove plus" onclick="addcardproducts()">{% render 'add-wishlist' %}</button>
+              <button id="" class="add-remove minus" onclick="removecardproducts()">
+                {% render 'remove-wishlist' %}
+              </button>
+
             {%- when 'sku' -%}
               <p
                 class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"

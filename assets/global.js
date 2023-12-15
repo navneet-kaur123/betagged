@@ -1,3 +1,181 @@
+function myFunction() { 
+  var customer_id_element = document.getElementById("customerid");
+  var customer_id = customer_id_element.textContent;
+var work = "getproduct";
+fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "&work=" + work, {
+  method: "POST",
+  body: JSON.stringify({
+    userId: 1,
+    title: "Fix my bugs",
+    completed: false,
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8",
+  },
+})
+.then((response) => response.text())
+.then((text) => {
+  // console.log('res:', text);
+  var jsonStrings = text.split('}').filter(Boolean).map(function (item) {
+    return item + '}';
+  });
+  var dataArray = jsonStrings.map(function (item) {
+    return JSON.parse(item);
+  });
+
+  dataArray.forEach(function (item) {
+    var elementId = item.product_id;
+    var id = 'p' + item.product_id;
+    var element = document.getElementById(id);
+    if (element) {
+      element.style.display = "none";
+      var elementToDisplay = document.getElementById(elementId);
+      if (elementToDisplay) {
+        elementToDisplay.style.display = "block";
+        var svgElement = elementToDisplay.querySelector('svg');
+        if (svgElement) {
+          svgElement.style.display = "block";
+        }
+      }
+    }
+  });
+})
+.catch((error) => console.error("Error:", error));
+}
+window.onload = myFunction;
+
+
+function passvalue() {
+var customer_id = document.getElementById("customerid").textContent;
+var work = "getproduct";
+fetch(
+  "http://localhost/breadcrumb-app/index.php?customer_id=" +
+    customer_id +
+    "&work=" +
+    work,
+  {
+    method: "POST",
+    body: JSON.stringify({
+      userId: 1,
+      title: "Fix my bugs",
+      completed: false,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  }
+)
+  .then((response) => response.text())
+  .then((text) => {
+    var jsonStrings = text
+      .split("}")
+      .filter(Boolean)
+      .map(function (item) {
+        return item + "}";
+      });
+    var dataArray = jsonStrings.map(function (item) {
+      return JSON.parse(item);
+    });
+
+    var hiddenInput = document.querySelector(".product-variant-id");
+    var variant_id = hiddenInput.value;
+
+    dataArray.forEach(function (item) {
+      setTimeout(function () {
+        var elementId = item.product_id;
+        var id = "p" + item.product_id;
+        var element = document.getElementById(id);
+        if (elementId == variant_id) {
+          element.style.display = "none";
+          var elementToDisplay = document.getElementById(elementId);
+          if (elementToDisplay) {
+            elementToDisplay.style.display = "block";
+            var svgElement = elementToDisplay.querySelector("svg");
+            if (svgElement) {
+              svgElement.style.display = "block";
+            }
+          }
+        } else {
+          var id = "p" + item.product_id;
+          var element = document.getElementById(id);
+          element.style.display = "block";
+          var elementToDisplay = document.getElementById(elementId);
+          if (elementToDisplay) {
+            elementToDisplay.style.display = "none";
+            var svgElement = elementToDisplay.querySelector("svg");
+            if (svgElement) {
+              svgElement.style.display = "none";
+            }
+          }
+        }
+      }, 1000);
+    });
+  })
+  .catch((error) => console.error("Error:", error));
+}
+
+function addcardproducts(variant_id,title,price,customer_id,product_url,img_url) {
+variant_id = variant_id !== undefined ? variant_id : (document.getElementsByClassName("product-variant-id")[0].defaultValue);
+title = title !== undefined ? title :document.getElementById("myproducttitle").textContent.trim();
+price = price !== undefined ? price :document.getElementById("variant_price").textContent.trim();
+customer_id = customer_id !== undefined ? customer_id :document.getElementById("customerid").textContent;
+if(customer_id==""){
+   location.replace("https://newwishlist.myshopify.com/account/login")
+}
+product_url = product_url !== undefined ? product_url :document.getElementById("myproducturl").textContent.trim();
+img_url = img_url !== undefined ? img_url :document.getElementById("myimageurl").textContent.trim();
+
+var numericVariantId = variant_id ? variant_id.replace(/^p+/, "").match(/\d+/) : null;
+var pid="p"+numericVariantId;
+
+document.getElementById(pid).style.display = "none";
+document.getElementById(numericVariantId).style.display = "block"; 
+document.getElementById(numericVariantId).querySelector('svg').style.display = "block";
+
+var work='add';
+fetch("http://localhost/breadcrumb-app/index.php?product_id="+numericVariantId+"&customer_id="+customer_id+"&product_title="+title+"&price="+price+"&img_url="+img_url+"&product_url="+product_url+"?variant="+numericVariantId+"&work="+work, 
+            {
+        method: "POST",
+        body: JSON.stringify({
+        userId: 1,
+        title: "Fix my bugs",
+        completed: false
+     }),
+     headers: {
+       "Content-type": "application/json; charset=UTF-8"
+     }
+    })
+    .then((text) => console.log('Response:', text))
+    .catch((error) => console.error('Error:', error));
+ }
+
+function removecardproducts(variant_id,customer_id){
+variant_id = variant_id !== undefined ? variant_id : (document.getElementsByClassName("product-variant-id")[0].defaultValue);
+customer_id = customer_id !== undefined ? customer_id :document.getElementById("customerid").textContent;
+var pid="p"+variant_id;
+pid = pid.replace(/^pp+/, "p");
+
+document.getElementById(pid).style.display = "block";
+document.getElementById(variant_id).style.display = "none"; 
+
+work='remove';
+fetch("http://localhost/breadcrumb-app/index.php?product_id="+variant_id+"&customer_id="+customer_id+"&work="+work, 
+            {
+        method: "POST",
+        body: JSON.stringify({
+        userId: 1,
+        title: "Fix my bugs",
+        completed: false
+     }),
+     headers: {
+       "Content-type": "application/json; charset=UTF-8"
+     }
+    })
+    .then((text) => console.log('Response:', text))
+    .catch((error) => console.error('Error:', error));
+ }
+
+
 function getFocusableElements(container) {
   return Array.from(
     container.querySelectorAll(

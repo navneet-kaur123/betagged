@@ -31,15 +31,6 @@
           "settings": {
           }
         },
-        "5b23caf1-9f3e-4671-9e2e-0d40ae5b595a": {
-          "type": "inventory",
-          "disabled": true,
-          "settings": {
-            "text_style": "body",
-            "inventory_threshold": 10,
-            "show_inventory_quantity": true
-          }
-        },
         "9d7025b8-294c-41b1-99f3-a76b82d59722": {
           "type": "shopify:\/\/apps\/wishlist-app\/blocks\/star_rating\/f6a71d78-7b95-47cb-91e0-7a9e9d22e842",
           "settings": {
@@ -54,7 +45,6 @@
         "65253a4b-4701-4946-96c3-0920c59b5eac",
         "0b5fae3c-0dd8-44ca-b2bb-bf8755bc410e",
         "12ecca40-9621-411b-b06d-cac2043765ab",
-        "5b23caf1-9f3e-4671-9e2e-0d40ae5b595a",
         "9d7025b8-294c-41b1-99f3-a76b82d59722"
       ],
       "settings": {

@@ -2,6 +2,24 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "17029670068a00154c": {
+      "type": "apps",
+      "blocks": {
+        "1f74f378-8f04-4d1a-ad05-acfccc2d43a2": {
+          "type": "shopify:\/\/apps\/wishlist-app\/blocks\/star_rating\/f6a71d78-7b95-47cb-91e0-7a9e9d22e842",
+          "settings": {
+            "product": "nike-air-zoom-pegasus-man-running-38",
+            "colour": "#ff0000"
+          }
+        }
+      },
+      "block_order": [
+        "1f74f378-8f04-4d1a-ad05-acfccc2d43a2"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -50,6 +68,7 @@
     }
   },
   "order": [
+    "17029670068a00154c",
     "footer"
   ]
 }

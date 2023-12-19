@@ -5,11 +5,13 @@
       "blocks": {
         "title": {
           "type": "title",
+          "disabled": true,
           "settings": {
           }
         },
         "7b534f24-958d-43e1-b232-c6faf2995b8b": {
           "type": "price",
+          "disabled": true,
           "settings": {
           }
         },

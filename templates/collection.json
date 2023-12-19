@@ -26,29 +26,10 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "1702971431b60e0b79": {
-      "type": "apps",
-      "blocks": {
-        "06558ee9-94ad-45e7-91e9-992d09058916": {
-          "type": "shopify:\/\/apps\/wishlist-app\/blocks\/star_rating\/f6a71d78-7b95-47cb-91e0-7a9e9d22e842",
-          "settings": {
-            "product": "",
-            "colour": "#ff0000"
-          }
-        }
-      },
-      "block_order": [
-        "06558ee9-94ad-45e7-91e9-992d09058916"
-      ],
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
     "banner",
-    "product-grid",
-    "1702971431b60e0b79"
+    "product-grid"
   ]
 }

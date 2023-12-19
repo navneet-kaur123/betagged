@@ -31,8 +31,8 @@
           "settings": {
           }
         },
-        "9d7025b8-294c-41b1-99f3-a76b82d59722": {
-          "type": "shopify:\/\/apps\/wishlist-app\/blocks\/star_rating\/f6a71d78-7b95-47cb-91e0-7a9e9d22e842",
+        "c6b54784-8b62-4eda-aadd-eb96d6b9d12c": {
+          "type": "shopify:\/\/apps\/wishlist-app\/blocks\/star_rating\/fd6fd214-644b-4acb-8e71-a92f5d2ca65b",
           "settings": {
             "product": "{{product}}",
             "colour": "#ff0000"
@@ -45,7 +45,7 @@
         "65253a4b-4701-4946-96c3-0920c59b5eac",
         "0b5fae3c-0dd8-44ca-b2bb-bf8755bc410e",
         "12ecca40-9621-411b-b06d-cac2043765ab",
-        "9d7025b8-294c-41b1-99f3-a76b82d59722"
+        "c6b54784-8b62-4eda-aadd-eb96d6b9d12c"
       ],
       "settings": {
         "enable_sticky_info": false,
@@ -83,8 +83,8 @@
     "1702969618bf777e04": {
       "type": "apps",
       "blocks": {
-        "7297d078-1853-47de-9c4b-06f657955ea0": {
-          "type": "shopify:\/\/apps\/wishlist-app\/blocks\/star_rating\/f6a71d78-7b95-47cb-91e0-7a9e9d22e842",
+        "52fbdde9-9cf2-4f29-893a-cba0fef3d5d7": {
+          "type": "shopify:\/\/apps\/wishlist-app\/blocks\/star_rating\/fd6fd214-644b-4acb-8e71-a92f5d2ca65b",
           "settings": {
             "product": "{{product}}",
             "colour": "#ff0000"
@@ -92,7 +92,7 @@
         }
       },
       "block_order": [
-        "7297d078-1853-47de-9c4b-06f657955ea0"
+        "52fbdde9-9cf2-4f29-893a-cba0fef3d5d7"
       ],
       "settings": {
         "include_margins": true

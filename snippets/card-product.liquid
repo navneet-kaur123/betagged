@@ -61,7 +61,9 @@
       >
         {%- if card_product.featured_media -%}
           <div class="card__media">
-            {% render 'wishlisthero-collection-product', product: product %}
+            <!-- {% render 'wishlisthero-collection-product', product: product %} -->
+            {% render 'wishlisthero-collection-product' with product: product, buttonMode: 'button_with_icon', buttonClass: 'wishlisthero-floating mycustomClass' %}
+
             <div class="media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img

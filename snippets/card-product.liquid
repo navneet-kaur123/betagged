@@ -61,8 +61,8 @@
       >
         {%- if card_product.featured_media -%}
           <div class="card__media">
+            {% render 'wishlisthero-collection-product' with product: product %}
             <div class="media media--transparent media--hover-effect">
-              {% render 'wishlisthero-collection-product' with product: product %}
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
                 id="imgurl"

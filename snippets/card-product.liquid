@@ -43,7 +43,6 @@
     endif
   -%}
   <div class="card-wrapper product-card-wrapper underline-links-hover">
-    {% render 'wishlisthero-collection-product' with product: product %}
     <div
       class="
         card
@@ -62,7 +61,9 @@
       >
         {%- if card_product.featured_media -%}
           <div class="card__media">
+            {% render 'wishlisthero-collection-product' with product: product %}
             <div class="media media--transparent media--hover-effect">
+              {% render 'wishlisthero-collection-product' with product: product %}
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
                 id="imgurl"
@@ -86,8 +87,9 @@
                 height="{{ card_product.featured_media.height }}"
               >
               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
-
+              {% render 'wishlisthero-collection-product' with product: product %}
               {%- if card_product.media[1] != null and show_secondary_image -%}
+                {% render 'wishlisthero-collection-product' with product: product %}
                 <img
                   srcset="
                     {%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}

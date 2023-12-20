@@ -30,13 +30,6 @@
           "type": "description",
           "settings": {
           }
-        },
-        "071842cb-840c-4168-8232-808d57a1382a": {
-          "type": "shopify:\/\/apps\/wishlist-app\/blocks\/star_rating\/fd6fd214-644b-4acb-8e71-a92f5d2ca65b",
-          "settings": {
-            "product": "{{product}}",
-            "colour": "#1200ff"
-          }
         }
       },
       "block_order": [
@@ -44,8 +37,7 @@
         "7b534f24-958d-43e1-b232-c6faf2995b8b",
         "65253a4b-4701-4946-96c3-0920c59b5eac",
         "0b5fae3c-0dd8-44ca-b2bb-bf8755bc410e",
-        "12ecca40-9621-411b-b06d-cac2043765ab",
-        "071842cb-840c-4168-8232-808d57a1382a"
+        "12ecca40-9621-411b-b06d-cac2043765ab"
       ],
       "settings": {
         "enable_sticky_info": false,

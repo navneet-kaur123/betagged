@@ -1,38 +1,52 @@
 {% comment %}
- Wishlist Hero Snippets -  V 1.0.0
+  Wishlist Hero Snippets -  V 1.0.0
 {% endcomment %}
 {% unless buttonMode %}
-   {% assign buttonMode = 'icon_only' %}
+  {% assign buttonMode = 'icon_only' %}
 {% endunless %}
 {% unless buttonView %}
-   {% assign buttonView = 'Collection' %}
+  {% assign buttonView = 'Collection' %}
 {% endunless %}
 {% unless buttonClass %}
-   {% assign buttonClass = 'wishlisthero-floating' %}
-{% endunless  %}
+  {% assign buttonClass = 'wishlisthero-floating' %}
+{% endunless %}
 {% assign image = product.featured_image %}
 {% assign name = product.title %}
 {% capture url %}https://{{shop.domain}}{{product.url}}{% endcapture %}
 {% for var in product.variants %}
-    {% if product.selected_or_first_available_variant.id == var.id %}
-        {% if var.image and var.image.src %}
-            {% assign image = var.image.src %}
-        {% endif %}
-        {% if var.url %}
-            {%  assign url = var.url %}
-        {% endif %}
-        {% if var.name %}
-            {% assign name = var.name %}
-        {% endif %}
+  {% if product.selected_or_first_available_variant.id == var.id %}
+    {% if var.image and var.image.src %}
+      {% assign image = var.image.src %}
     {% endif %}
+    {% if var.url %}
+      {% assign url = var.url %}
+    {% endif %}
+    {% if var.name %}
+      {% assign name = var.name %}
+    {% endif %}
+  {% endif %}
 {% endfor %}
-<div data-wlh-id="{{product.id}}" 
- data-wlh-link="{{url}}"
-data-wlh-variantid="{{product.selected_or_first_available_variant.id}}" 
- data-wlh-price="{{product.selected_or_first_available_variant.price | remove: '.' | remove: ',' | divided_by: 100.0 }}" 
- data-wlh-name="{{name | strip_html }}" 
- data-wlh-image="{{image | img_url: '1024x'}}" 
- class="wishlist-hero-custom-button {{buttonClass}}" 
- data-wlh-mode="{{buttonMode}}"
- data-wlh-view="{{buttonView}}"
- style="left: auto;"></div> 
+<div
+  data-wlh-id="{{product.id}}"
+  data-wlh-link="{{url}}"
+  data-wlh-variantid="{{product.selected_or_first_available_variant.id}}"
+  data-wlh-price="{{product.selected_or_first_available_variant.price | remove: '.' | remove: ',' | divided_by: 100.0 }}"
+  data-wlh-name="{{name | strip_html }}"
+  data-wlh-image="{{image | img_url: '1024x'}}"
+  class="wishlist-hero-custom-button {{buttonClass}}"
+  data-wlh-mode="{{buttonMode}}"
+  data-wlh-view="{{buttonView}}"
+  style="left: auto;"
+>
+  <svg
+    class="add-wishlist"
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    class="icon icon-wishlist bi bi-heart"
+    viewBox="0 0 16 16"
+  >
+    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+  </svg>
+</div>

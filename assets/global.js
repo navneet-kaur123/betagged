@@ -120,7 +120,7 @@ title = title !== undefined ? title :document.getElementById("myproducttitle").t
 price = price !== undefined ? price :document.getElementById("variant_price").textContent.trim();
 customer_id = customer_id !== undefined ? customer_id :document.getElementById("customerid").textContent;
 if(customer_id==""){
-   location.replace("https://newwishlist.myshopify.com/account/login")
+   location.replace("https://xn-betgge-1ug8575ch3aia.myshopify.com/account/login")
 }
 product_url = product_url !== undefined ? product_url :document.getElementById("myproducturl").textContent.trim();
 img_url = img_url !== undefined ? img_url :document.getElementById("myimageurl").textContent.trim();

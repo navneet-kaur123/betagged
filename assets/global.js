@@ -44,7 +44,11 @@ fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "
 .catch((error) => console.error("Error:", error));
 }
 // window.onload = myFunction;
- setTimeout(myFunction,9000);
+ // setTimeout(myFunction,9000);
+ window.onload = function() {
+      // Call myFunction after a delay of 9 seconds
+      setTimeout(myFunction, 9000); // 9000 milliseconds = 9 seconds
+    };
 
 
 function passvalue() {

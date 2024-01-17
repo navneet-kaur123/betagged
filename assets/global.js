@@ -115,7 +115,8 @@ fetch(
 }
 
 function addcardproducts(variant_id,title,price,customer_id,product_url,img_url) {
-  var r=`{{customer.name}}`;
+  var r="{{customer.name}}";
+  console.log(r);
 variant_id = variant_id !== undefined ? variant_id : (document.getElementsByClassName("product-variant-id")[0].defaultValue);
 title = title !== undefined ? title :document.getElementById("myproducttitle").textContent.trim();
 price = price !== undefined ? price :document.getElementById("variant_price").textContent.trim();

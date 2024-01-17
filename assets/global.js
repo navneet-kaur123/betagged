@@ -1,6 +1,8 @@
 function myFunction() { 
   var customer_id_element = document.getElementById("customerid");
   var customer_id = customer_id_element.textContent;
+    var cidValue = window.__st.cid;
+  console.log(cidValue);
 var work = "getproduct";
 fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "&work=" + work, {
   method: "POST",

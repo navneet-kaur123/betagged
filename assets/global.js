@@ -26,8 +26,8 @@ fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "
 
   dataArray.forEach(function (item) {
     var elementId = item.product_id;
-    var Id = 'p' + item.product_id;
-    var element = document.getElementById(Id);
+    var id = 'p' + item.product_id;
+    var element = document.getElementById(id);
     if (element) {
       element.style.display = "none";
       var elementToDisplay = document.getElementById(elementId);

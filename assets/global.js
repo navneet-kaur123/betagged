@@ -44,7 +44,7 @@ fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "
 .catch((error) => console.error("Error:", error));
 }
 // window.onload = myFunction;
- setTimeout(myFunction,2000);
+ setTimeout(myFunction,9000);
 
 
 function passvalue() {

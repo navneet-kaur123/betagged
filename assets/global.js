@@ -1,49 +1,49 @@
-function myFunction() { 
-  // var customer_id_element = document.getElementById("customerid");
-  // var customer_id = customer_id_element.textContent;
-    var customer_id = window.__st.cid;
-var work = "getproduct";
-fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "&work=" + work, {
-  method: "POST",
-  body: JSON.stringify({
-    userId: 1,
-    title: "Fix my bugs",
-    completed: false,
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8",
-  },
-})
-.then((response) => response.text())
-.then((text) => {
-  // console.log('res:', text);
-  var jsonStrings = text.split('}').filter(Boolean).map(function (item) {
-    return item + '}';
-  });
-  var dataArray = jsonStrings.map(function (item) {
-    return JSON.parse(item);
-  });
+// function myFunction() { 
+//   // var customer_id_element = document.getElementById("customerid");
+//   // var customer_id = customer_id_element.textContent;
+//     var customer_id = window.__st.cid;
+// var work = "getproduct";
+// fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "&work=" + work, {
+//   method: "POST",
+//   body: JSON.stringify({
+//     userId: 1,
+//     title: "Fix my bugs",
+//     completed: false,
+//   }),
+//   headers: {
+//     "Content-type": "application/json; charset=UTF-8",
+//   },
+// })
+// .then((response) => response.text())
+// .then((text) => {
+//   // console.log('res:', text);
+//   var jsonStrings = text.split('}').filter(Boolean).map(function (item) {
+//     return item + '}';
+//   });
+//   var dataArray = jsonStrings.map(function (item) {
+//     return JSON.parse(item);
+//   });
 
-  dataArray.forEach(function (item) {
-    var elementId = item.product_id;
-    var id = 'p' + item.product_id;
-    var element = document.getElementById(id);
-    if (element) {
-      element.style.display = "none";
-      var elementToDisplay = document.getElementById(elementId);
-      if (elementToDisplay) {
-        elementToDisplay.style.display = "block";
-        var svgElement = elementToDisplay.querySelector('svg');
-        if (svgElement) {
-          svgElement.style.display = "block";
-        }
-      }
-    }
-  });
-})
-.catch((error) => console.error("Error:", error));
-}
-// window.onload = myFunction;
+//   dataArray.forEach(function (item) {
+//     var elementId = item.product_id;
+//     var id = 'p' + item.product_id;
+//     var element = document.getElementById(id);
+//     if (element) {
+//       element.style.display = "none";
+//       var elementToDisplay = document.getElementById(elementId);
+//       if (elementToDisplay) {
+//         elementToDisplay.style.display = "block";
+//         var svgElement = elementToDisplay.querySelector('svg');
+//         if (svgElement) {
+//           svgElement.style.display = "block";
+//         }
+//       }
+//     }
+//   });
+// })
+// .catch((error) => console.error("Error:", error));
+// }
+// // window.onload = myFunction;
 
   
 

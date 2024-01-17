@@ -47,7 +47,7 @@ window.onload = myFunction;
 
 
 function passvalue() {
-var customer_id = document.getElementById("customerid").textContent;
+var customer_id = window.__st.cid;
 var work = "getproduct";
 fetch(
   "http://localhost/breadcrumb-app/index.php?customer_id=" +

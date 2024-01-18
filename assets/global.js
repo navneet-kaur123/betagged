@@ -157,14 +157,14 @@ fetch(
 
 function addcardproducts(variant_id,title,price,customer_id,product_url,img_url) {
 variant_id = variant_id !== undefined ? variant_id : (document.getElementsByClassName("product-variant-id")[0].defaultValue);
-title = title !== undefined ? title :document.getElementById("myproducttitle").textContent.trim();
-price = price !== undefined ? price :document.getElementById("variant_price").textContent.trim();
+// title = title !== undefined ? title :document.getElementById("myproducttitle").textContent.trim();
+// price = price !== undefined ? price :document.getElementById("variant_price").textContent.trim();
 customer_id = customer_id !== undefined ? customer_id :document.getElementById("customerid").textContent;
 if(customer_id==""){
    location.replace("https://xn-betgge-1ug8575ch3aia.myshopify.com/account/login")
 }
-product_url = product_url !== undefined ? product_url :document.getElementById("myproducturl").textContent.trim();
-img_url = img_url !== undefined ? img_url :document.getElementById("myimageurl").textContent.trim();
+// product_url = product_url !== undefined ? product_url :document.getElementById("myproducturl").textContent.trim();
+// img_url = img_url !== undefined ? img_url :document.getElementById("myimageurl").textContent.trim();
 
 var numericVariantId = variant_id ? variant_id.replace(/^p+/, "").match(/\d+/) : null;
 var pid="p"+numericVariantId;

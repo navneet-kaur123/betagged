@@ -1,4 +1,5 @@
  var productInfo = document.querySelector('product-info');
+if(productInfo){
   var addButton=`<button 
   id=""
    class="add-remove plus" onclick="addcardproducts()">
@@ -32,6 +33,7 @@
   var spantag = document.createElement("div");
   spantag.innerHTML = addButton;
   productInfo.appendChild(spantag);
+}
 
 function myFunction() { 
   // var customer_id_element = document.getElementById("customerid");

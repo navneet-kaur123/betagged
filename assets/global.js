@@ -166,7 +166,7 @@ if(customer_id==""){
 // product_url = product_url !== undefined ? product_url :document.getElementById("myproducturl").textContent.trim();
 // img_url = img_url !== undefined ? img_url :document.getElementById("myimageurl").textContent.trim();
 
-// var numericVariantId = variant_id ? variant_id.replace(/^p+/, "").match(/\d+/) : null;
+var numericVariantId = variant_id ? variant_id.replace(/^p+/, "").match(/\d+/) : null;
 // var pid="p"+numericVariantId;
 
 // document.getElementById(pid).style.display = "none";
@@ -174,7 +174,7 @@ if(customer_id==""){
 // document.getElementById(numericVariantId).querySelector('svg').style.display = "block";
 
 var work='add';
-fetch("http://localhost/breadcrumb-app/index.php?product_id="+Variant_id+"&customer_id="+customer_id+"&work="+work, 
+fetch("http://localhost/breadcrumb-app/index.php?product_id="+numericVariantId+"&customer_id="+customer_id+"&work="+work, 
             {
         method: "POST",
         body: JSON.stringify({

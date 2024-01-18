@@ -174,7 +174,7 @@ document.getElementById(numericVariantId).style.display = "block";
 document.getElementById(numericVariantId).querySelector('svg').style.display = "block";
 
 var work='add';
-fetch("http://localhost/breadcrumb-app/index.php?product_id="+numericVariantId+"&customer_id="+customer_id+"&product_title="+title+"&price="+price+"&img_url="+img_url+"&product_url="+product_url+"?variant="+numericVariantId+"&work="+work, 
+fetch("http://localhost/breadcrumb-app/index.php?product_id="+numericVariantId+"&customer_id="+customer_id+"&work="+work, 
             {
         method: "POST",
         body: JSON.stringify({

@@ -43,7 +43,8 @@ fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "
 })
 .catch((error) => console.error("Error:", error));
 }
-window.onload = myFunction;
+// window.onload = myFunction;
+  setTimeout(myFunction,9000);
 
   
 

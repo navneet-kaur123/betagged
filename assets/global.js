@@ -174,7 +174,7 @@ if(customer_id==""){
 // document.getElementById(numericVariantId).querySelector('svg').style.display = "block";
 
 var work='add';
-fetch("http://localhost/breadcrumb-app/index.php?product_id="+VariantId+"&customer_id="+customer_id+"&work="+work, 
+fetch("http://localhost/breadcrumb-app/index.php?product_id="+Variant_id+"&customer_id="+customer_id+"&work="+work, 
             {
         method: "POST",
         body: JSON.stringify({

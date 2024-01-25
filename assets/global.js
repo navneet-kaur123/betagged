@@ -1,5 +1,4 @@
 
-
 function myFunction() { 
   // var customer_id_element = document.getElementById("customerid");
   // var customer_id = customer_id_element.textContent;

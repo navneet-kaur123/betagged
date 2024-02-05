@@ -19,9 +19,28 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "17071101537d161b32": {
+      "type": "apps",
+      "blocks": {
+        "001wishlist_wishlist_icon_efdz6b": {
+          "type": "shopify:\/\/apps\/001wishlist\/blocks\/wishlist-icon\/70e5e0b3-caaf-4015-936c-bd08908b795b",
+          "settings": {
+            "product": "",
+            "colour": "#ff0000"
+          }
+        }
+      },
+      "block_order": [
+        "001wishlist_wishlist_icon_efdz6b"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
-    "header"
+    "header",
+    "17071101537d161b32"
   ]
 }

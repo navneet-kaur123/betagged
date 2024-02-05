@@ -1,12 +1,29 @@
 {
-    "sections": {
-      "main": {
-        "type": "wishlist",
-        "settings": {
-        }
+  "sections": {
+    "main": {
+      "type": "wishlist",
+      "settings": {
       }
     },
-    "order": [
-      "main"
-    ]
-  }
+    "1707110137e28cb389": {
+      "type": "apps",
+      "blocks": {
+        "001wishlist_wishlistpage_GAQGUD": {
+          "type": "shopify:\/\/apps\/001wishlist\/blocks\/wishlistpage\/70e5e0b3-caaf-4015-936c-bd08908b795b",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "001wishlist_wishlistpage_GAQGUD"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1707110137e28cb389"
+  ]
+}

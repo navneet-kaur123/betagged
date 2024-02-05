@@ -1,7 +1,5 @@
 
 function myFunction() { 
-  // var customer_id_element = document.getElementById("customerid");
-  // var customer_id = customer_id_element.textContent;
     var customer_id = window.__st.cid;
 var work = "getproduct";
 fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "&work=" + work, {
@@ -17,14 +15,12 @@ fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "
 })
 .then((response) => response.text())
 .then((text) => {
-  // console.log('res:', text);
   var jsonStrings = text.split('}').filter(Boolean).map(function (item) {
     return item + '}';
   });
   var dataArray = jsonStrings.map(function (item) {
     return JSON.parse(item);
   });
-
   dataArray.forEach(function (item) {
     var elementId = item.product_id;
     var id = 'p' + item.product_id;
@@ -44,12 +40,6 @@ fetch("http://localhost/breadcrumb-app/index.php?customer_id=" + customer_id + "
 })
 .catch((error) => console.error("Error:", error));
 }
-// window.onload = myFunction;
-  // setTimeout(myFunction,9000);
-
-  
-
-
 function passvalue() {
 var customer_id = window.__st.cid;
 var work = "getproduct";
@@ -127,15 +117,9 @@ customer_id = customer_id !== undefined ? customer_id :document.getElementById("
 if(customer_id==""){
    location.replace("https://xn-betgge-1ug8575ch3aia.myshopify.com/account/login")
 }
-// product_url = product_url !== undefined ? product_url :document.getElementById("myproducturl").textContent.trim();
-// img_url = img_url !== undefined ? img_url :document.getElementById("myimageurl").textContent.trim();
 
 var numericVariantId = variant_id ? variant_id.replace(/^p+/, "").match(/\d+/) : null;
-// var pid="p"+numericVariantId;
 
-// document.getElementById(pid).style.display = "none";
-// document.getElementById(numericVariantId).style.display = "block"; 
-// document.getElementById(numericVariantId).querySelector('svg').style.display = "block";
 
 var work='add';
 fetch("http://localhost/breadcrumb-app/index.php?product_id="+numericVariantId+"&customer_id="+customer_id+"&work="+work, 
@@ -188,7 +172,6 @@ function getFocusableElements(container) {
     )
   );
 }
-
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   summary.setAttribute('role', 'button');
   summary.setAttribute('aria-expanded', summary.parentNode.hasAttribute('open'));

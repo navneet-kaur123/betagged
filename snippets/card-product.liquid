@@ -17,17 +17,7 @@
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
-<style>
-    .card.card--standard.card--media {
-      position: relative;
-  }
-      span button.add-remove {
-        position: absolute;
-        top: 1%;
-        right: 2%;
-        z-index: 9;
-    }
-</style>
+
 {{ 'wishlist.css' | asset_url | stylesheet_tag }}
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 {%- if card_product and card_product != empty -%}

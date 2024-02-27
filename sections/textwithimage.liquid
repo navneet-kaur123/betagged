@@ -70,13 +70,19 @@
 
 </style>
 <div class="container-box">
-  
+  <img
+    class="image-withtext"
+    src="
       {{
         section.settings.image
-        | image_url: width: 1500|image_tag:preload:true,class:"image-withtext",alt:"image",width:null
+        | image_url: width: 1500
       }}
-    
-   
+    "
+    height=""
+    width=""
+    alt="image"
+   fetchpriority= 'high'
+  >
   <div class="container">
     <div class="textwith-image">
       <div class="text-content">
